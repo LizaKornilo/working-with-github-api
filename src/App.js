@@ -4,26 +4,31 @@ import SearchPanel from './components/SearchPanel/SearchPanel';
 import SearchResults from './components/SearchResults/SearchResults';
 
 function App() {
-  const [repos, setRepos] = useState([
-    {
-      id: 1,
-      full_name: "First repo",
-      description: "Tutorial for Swift iOS App w/ Page View Controller",
-      updated_at: "2021-03-14T11:05:00Z",
-      language: "Swift"
-    },
-    {
-      id: 2,
-      full_name: "Second repo",
-      description: "Some description",
-      updated_at: "2021-03-14T11:05:00Z",
-      language: "Java"
-    }]);
+  const [reposCount, setReposCount] = useState(0);
+  const [repos, setRepos] = useState([]);
+  const [error, setError] = useState();
+
+  const setData = (items) => {
+    setRepos(items.map((item) => ({
+      id: item.id,
+      full_name: item.full_name,
+      description: item.description,
+      updated_at: item.updated_at,
+      language: item.language
+    })));
+  };
 
   return (
     <div className="App">
-      <SearchPanel />
-      <SearchResults repos={repos} />
+      <SearchPanel setData={setData} setError={setError} setReposCount={setReposCount} />
+      <div className='container'>
+        {error ? (
+          <h3>{error}</h3>) :
+          (<>
+            <h3 className='count'>{reposCount} repository results</h3>
+            <SearchResults repos={repos} />
+          </>)}
+      </div>
     </div>
   );
 }

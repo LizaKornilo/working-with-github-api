@@ -1,5 +1,7 @@
-.repo-card{
-padding: 4px 10px;
+.repo-card {
+  padding: 4px 10px;
+  max-width: 468px;
+  word-break: break-all;
 }
 
 .full-name {
@@ -16,6 +18,7 @@ padding: 4px 10px;
   font-size: 12px;
   color: #57606a;
 }
-.updated_at{
-  margin-left: 16px;
+
+.language {
+  margin-right: 16px;
 }
