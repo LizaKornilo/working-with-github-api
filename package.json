@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-router": "^6.2.1",
     "react-scripts": "5.0.0",
     "web-vitals": "^2.1.2"
   },
@@ -35,7 +36,7 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies" : {
+  "devDependencies": {
     "normalize.css": "^8.0.1"
   }
 }
