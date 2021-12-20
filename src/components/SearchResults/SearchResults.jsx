@@ -7,7 +7,7 @@ function SearchResults({ repos }) {
       <div className="container">
         <ul className='repos'>{
           repos.map((repo) => {
-            return <li>
+            return <li key={repo.id}>
               <hr />
               <RepoCard repo={repo} />
             </li>
