@@ -9,22 +9,8 @@ function App() {
   const [error, setError] = useState();
 
   const setData = (items) => {
-    setRepos(items.map((item) => ({
-      id: item.id,
-      full_name: item.full_name,
-      description: item.description,
-      updated_at: item.updated_at,
-      language: item.language,
-
-      owner: {
-        avatar_url: item.owner.avatar_url,
-        id:  item.owner.id,
-        login:  item.owner.login,
-        html_url:  item.owner.html_url
-      },
-      private: item.private,
-      html_url: item.html_url
-    })));
+    setRepos(items);
+    setReposCount(items.length)
   };
 
   return (

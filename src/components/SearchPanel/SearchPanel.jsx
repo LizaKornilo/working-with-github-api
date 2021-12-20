@@ -1,25 +1,18 @@
 import './searchPanel.css';
 import React, { useEffect, useState, useRef } from 'react';
+import { searchRepos } from '../../api'
 
-function SearchPanel({ setData, setError, setReposCount }) {
-  const [value, setValue] = useState("");
+function SearchPanel({ setData, setError }) {
+  const [value, setValue] = useState('');
 
   const input = useRef(null);
 
-  const setDataByTerms = (terms) => {
-    fetch(`https://api.github.com/search/repositories?page=1&per_page=20&q=${terms.split(' ').join('%')}`)
-      .then(res => res.json())
-      .then(data => {
-        console.log(value);
-        console.log(data);
-        if (data.message) {
-          setError(data.message);
-        } else {
-          setError(null);
-          setReposCount(data.items.length);
-          setData(data.items);
-        }
-      });
+  const setDataByTerms = async (terms) => {
+    try {
+      setData(value !== '' ? await searchRepos(value) : []);
+    } catch(e) {
+      setError(e.message);
+    }
   }
 
   const handleChange = event => {
