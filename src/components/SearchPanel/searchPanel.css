@@ -1,0 +1,24 @@
+.search-panel {
+  background-color: #24292f;
+  width: 100%;
+  padding: 16px 32px;
+  text-align: center;
+}
+
+.search-form__input {
+  min-height: 28px;
+  width: 35%;
+  border-radius: 6px;
+  padding: 0 10px;
+  vertical-align: middle;
+  background-color: #24292f;
+  border: 1px solid #57606a;
+  font-size: inherit;
+  color: white;
+  transition: width 0.5s, background-color 0.5s;
+}
+
+.search-form__input:focus {
+  width: 50%;
+  background-color: rgba(255, 255, 255, .175);
+}

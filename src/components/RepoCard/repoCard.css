@@ -1,0 +1,21 @@
+.repo-card{
+padding: 4px 10px;
+}
+
+.full-name {
+  font-size: 18px;
+}
+
+.description {
+  font-size: inherit;
+  margin: 5px 0;
+}
+
+.small-text-wrapper {
+  display: flex;
+  font-size: 12px;
+  color: #57606a;
+}
+.updated_at{
+  margin-left: 16px;
+}
