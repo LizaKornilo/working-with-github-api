@@ -1,8 +1,10 @@
 import './searchPanel.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 function SearchPanel({ setData, setError, setReposCount }) {
   const [value, setValue] = useState("");
+
+  const input = useRef(null);
 
   const setDataByTerms = (terms) => {
     fetch(`https://api.github.com/search/repositories?page=1&per_page=20&q=${terms.split(' ').join('%')}`)
@@ -25,7 +27,7 @@ function SearchPanel({ setData, setError, setReposCount }) {
   }
 
   const handleSubmit = event => {
-    document.getElementById("input").blur();
+    this.input.current.blur();
     setDataByTerms(value);
     event.preventDefault();
   }
@@ -38,7 +40,7 @@ function SearchPanel({ setData, setError, setReposCount }) {
   return (
     <div className="search-panel">
       <form className='search-form' onSubmit={handleSubmit}>
-        <input id="input" className='search-form__input' value={value} onChange={handleChange} type='text' placeholder='enter the search terms...' />
+        <input ref={input} className='search-form__input' value={value} onChange={handleChange} type='text' placeholder='enter the search terms...' />
       </form>
     </div>
   );
