@@ -26,9 +26,7 @@ function SearchPanel({ setData, setError, setReposCount }) {
 
   const handleSubmit = event => {
     document.getElementById("input").blur();
-
     setDataByTerms(value);
-
     event.preventDefault();
   }
 

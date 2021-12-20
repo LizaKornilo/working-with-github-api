@@ -7,7 +7,7 @@ function RepoCard({ repo }) {
       <div className="description">{repo.description}</div>
       <div className="small-text-wrapper">
         {(repo.language)?(<div className="language">{repo.language}</div>):""}
-        <div className="updated_at">Updated on {repo.updated_at}</div>
+        <div className="updated_at">Updated on {new Date(repo.updated_at).toLocaleDateString()}</div>
       </div>
     </div>
   );
