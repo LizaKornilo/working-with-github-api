@@ -10,7 +10,7 @@ function SearchPanel({ setData, setError }) {
   const setDataByTerms = async _ => {
     try {
       setData(value !== '' ? await searchRepos(value) : []);
-    } catch(e) {
+    } catch (e) {
       setError(e.message);
     }
   }
@@ -20,15 +20,14 @@ function SearchPanel({ setData, setError }) {
   }
 
   const handleSubmit = event => {
-    this.input.current.blur();
     setDataByTerms(value);
     event.preventDefault();
+    input.current.blur();
   }
 
   useEffect(() => {
     setDataByTerms(value);
   }, [value])
-
 
   return (
     <div className="search-panel">
