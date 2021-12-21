@@ -7,7 +7,7 @@ function SearchPanel({ setData, setError }) {
 
   const input = useRef(null);
 
-  const setDataByTerms = async (terms) => {
+  const setDataByTerms = async () => {
     try {
       setData(value !== '' ? await searchRepos(value) : []);
     } catch(e) {
