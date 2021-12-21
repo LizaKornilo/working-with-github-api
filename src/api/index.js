@@ -9,8 +9,7 @@ export async function searchRepos(terms, page = 1, itemsPerPage = 30) {
   else if(response.status === 403) throw new Error('API rate limit exceeded :(');
   else if (response.status !== 200) throw new Error(':(');
     
-
-  console.log(data);
+  //console.log(data);
   return data.items.map(item => ({
     id: item.id,
     fullName: item.full_name,
@@ -19,7 +18,6 @@ export async function searchRepos(terms, page = 1, itemsPerPage = 30) {
     language: item.language,
   }));
 } 
-
 
 export async function searchRepoById(repoId) {
   const url = encodeURI(`https://api.github.com/repositories/${repoId}`);
@@ -31,7 +29,7 @@ export async function searchRepoById(repoId) {
   else if(response.status === 404) throw new Error('Not Found :(');
   else if (response.status !== 200) throw new Error(':(');
     
-  console.log(data);
+  //console.log(data);
   const langsUrl = data.languages_url;
   const langsResponse = await fetch(langsUrl);
   const langs = await langsResponse.json();  
@@ -52,12 +50,11 @@ export async function searchRepoById(repoId) {
     createdAt: data.created_at,
     updatedAt: data.updated_at,
     pushedAt: data.pushed_at,
-    languages: langs,
-    //"languages_url": "https://api.github.com/repos/angular/angular/languages",
+    languages: langs, //object
     stargazersCount: data.stargazers_count,
     watchersCount: data.watchers_count,
     forksCount: data.forks_count,
-    topics: data.topics,//array
+    topics: data.topics, //array
     visibility: data.visibility,
   };
 } 
