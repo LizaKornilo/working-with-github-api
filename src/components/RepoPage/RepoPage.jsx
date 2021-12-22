@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react/cjs/react.development";
 import { searchRepoById } from "../../api";
+import RepoContent from "../RepoContent/RepoContent";
 
 function RepoPage() {
   let params = useParams();
@@ -24,11 +25,14 @@ function RepoPage() {
 
   return (
     <div className='repo-page'>
-      {error ?
-        (<h3>{error}</h3>) :
-        (<div>This is {repo.name} repo page</div>)
-      }
-    </div>
+      <div className="container">
+        {
+          error ?
+            <h3>{error}</h3> :
+            <RepoContent repo={repo} />
+        }
+      </div>
+    </div >
   );
 }
 
