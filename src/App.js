@@ -5,7 +5,7 @@ import SearchPanel from './components/SearchPanel/SearchPanel';
 import SearchResults from './components/SearchResults/SearchResults';
 
 function App() {
-  const [reposCount, setReposCount] = useState(0);
+  const [repoCount, setRepoCount] = useState(0);
   const [error, setError] = useState();
 
   const [searchTerms, setSearchTerms] = useState({
@@ -17,16 +17,16 @@ function App() {
     setSearchTerms({ terms: terms, filter: filter });
   }
 
-  const setRepoCount = async _ => {
+  const setCount = async _ => {
     try {
-      setReposCount(searchTerms.terms !== '' ? await getRepoCount(searchTerms.terms, searchTerms.filter) : 0);
+      setRepoCount(searchTerms.terms !== '' ? await getRepoCount(searchTerms.terms, searchTerms.filter) : 0);
     } catch (e) {
       setError(e.message);
     }
   }
 
   useEffect(() => {
-    setRepoCount()
+    setCount()
   }, [searchTerms]);
 
   return (
@@ -35,11 +35,10 @@ function App() {
       <div className='container'>
         <div className='repos-count'>
           {
-            error ? error : reposCount
+            error ? error : <>{repoCount} repository results</>
           }
-          &nbsp;repository results
         </div>
-        <SearchResults searchTerms={searchTerms} />
+        <SearchResults searchTerms={searchTerms} repoCount={repoCount} />
       </div>
     </div>
   );

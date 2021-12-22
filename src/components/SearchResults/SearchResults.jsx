@@ -2,22 +2,30 @@ import './searchResults.css';
 import RepoCard from '../RepoCard/RepoCard';
 import { useState, useEffect } from 'react/cjs/react.development';
 import { searchRepos } from '../../api'
+import Paginate from '../Paginate/Paginate';
 
-function SearchResults({ searchTerms }) {
+function SearchResults({ searchTerms, repoCount }) {
   const [repos, setRepos] = useState([]);
   const [error, setError] = useState();
+  const [page, setPage] = useState(1);
+  const REPO_PER_PAGE = 30;
+
+  const updatePage = (page) => {
+    setPage(page);
+  }
 
   const setReposByTermsAndFilter = async _ => {
     try {
-      setRepos(searchTerms.terms !== '' ? await searchRepos(searchTerms.terms, searchTerms.filter) : []);
+      setRepos(searchTerms.terms !== '' ? await searchRepos(searchTerms.terms, searchTerms.filter, page, REPO_PER_PAGE) : []);
     } catch (e) {
       setError(e.message);
     }
   }
 
   useEffect(() => {
-    console.log(searchTerms); setReposByTermsAndFilter()
-  }, [searchTerms]);
+    //console.log(searchTerms); 
+    setReposByTermsAndFilter()
+  }, [searchTerms, page]);
 
   return (
     <div className='search-results'>
@@ -36,6 +44,7 @@ function SearchResults({ searchTerms }) {
               }</ul>
             )
         }
+        <Paginate updatePage={updatePage} repoCount={repoCount} repoPerPage={REPO_PER_PAGE} />
       </div>
     </div>);
 }
