@@ -13,12 +13,57 @@
   vertical-align: middle;
   background-color: #24292f;
   border: 1px solid #57606a;
-  font-size: inherit;
+  font-size: 16px;
   color: white;
   transition: width 0.5s, background-color 0.5s;
 }
 
 .search-form__input:focus {
   width: 50%;
-  background-color: rgba(255, 255, 255, .175);
+  background-color: rgba(255, 255, 255, 0.175);
+}
+
+.filters {
+  margin-top: 20px;
+}
+
+.form_radio_btn {
+  display: inline-block;
+}
+
+.form_radio_btn + .form_radio_btn {
+  margin-left: 10px;
+}
+
+.form_radio_btn input[type="radio"] {
+  display: none;
+}
+
+.form_radio_btn label {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0px 15px;
+  line-height: 20px;
+  border: 1px solid #57606a;
+  border-radius: 6px;
+  user-select: none;
+  color: #666;
+  font-size: 16px;
+}
+
+/* Checked */
+.form_radio_btn input[type="radio"]:checked + label {
+  background: #5580de;
+  color: white;
+}
+
+/* Hover */
+.form_radio_btn label:hover {
+  color: white;
+}
+
+/* Disabled */
+.form_radio_btn input[type="radio"]:disabled + label {
+  background: #efefef;
+  color: #666;
 }

@@ -50,36 +50,39 @@ function SearchPanel({ setData, setError }) {
           type='text'
           placeholder='enter the search terms...' />
         <div className="filters">
-          <label>
+          <div className="form_radio_btn">
             <input
+              id="radio-stars"
               name="filter"
               type="radio"
               value={'stars'}
               checked={formState.filter === 'stars'}
               onChange={handleInputChange}
             />
-            filter by stars
-          </label>
-          <label>
+            <label htmlFor='radio-stars'>filter by stars</label>
+          </div>
+          <div className="form_radio_btn">
             <input
+              id='radio-forks'
               name="filter"
               type="radio"
               value={'forks'}
               checked={formState.filter === 'forks'}
               onChange={handleInputChange}
             />
-            filter by forks
-          </label>
-          <label>
+            <label htmlFor='radio-forks'>by forks</label>
+          </div>
+          <div className="form_radio_btn">
             <input
+              id='radio-no-filter'
               name="filter"
               type="radio"
               value={'no filter'}
               checked={formState.filter === 'no filter'}
               onChange={handleInputChange}
             />
-            no filter
-          </label>
+            <label htmlFor='radio-no-filter'>no filter</label>
+          </div>
         </div>
       </form>
     </div>
