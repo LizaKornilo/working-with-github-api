@@ -19,6 +19,18 @@
   color: #57606a;
 }
 
-.language {
+.card__language {
   margin-right: 16px;
+}
+
+.stars-forks-wrapper {
+  height: 30px;
+  vertical-align: middle;
+  display:flex;
+  align-items:center;
+  margin: 8px 0;
+}
+
+.fork-svg{
+  margin-left: 16px;
 }

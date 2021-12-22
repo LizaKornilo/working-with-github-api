@@ -8,7 +8,7 @@ export async function searchRepos(terms, page = 1, itemsPerPage = 30) {
   if (response.status === 422) throw new Error('Validation Failed :(');
   else if(response.status === 403) throw new Error('API rate limit exceeded :(');
   else if (response.status !== 200) throw new Error(':(');
-    
+
   //console.log(data);
   return data.items.map(item => ({
     id: item.id,
@@ -16,6 +16,8 @@ export async function searchRepos(terms, page = 1, itemsPerPage = 30) {
     description: item.description,
     updatedAt: item.updated_at,
     language: item.language,
+    stargazersCount: item.stargazers_count,
+    forksCount: item.forks_count
   }));
 } 
 
