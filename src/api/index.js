@@ -1,3 +1,16 @@
+export async function getRepoCount(terms, filter) {
+  const url = encodeURI(`https://api.github.com/search/repositories?&q=${terms}${filter !== "no filter" ? ("&sort=" + filter) : ""}`);
+
+  const response = await fetch(url);
+  const data = await response.json();
+
+  if (response.status === 422) throw new Error('Validation Failed :(');
+  else if (response.status === 403) throw new Error('API rate limit exceeded :(');
+  else if (response.status !== 200) throw new Error(':(');
+
+  return data.total_count;
+}
+
 
 export async function searchRepos(terms, filter, page = 1, itemsPerPage = 30) {
   const url = encodeURI(`https://api.github.com/search/repositories?page=${page}&per_page=${itemsPerPage}&q=${terms}${filter !== "no filter" ? ("&sort=" + filter) : ""}`);

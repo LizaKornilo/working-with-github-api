@@ -1,22 +1,13 @@
 import './searchPanel.css';
 import React, { useEffect, useState, useRef } from 'react';
-import { searchRepos } from '../../api'
 
-function SearchPanel({ setData, setError }) {
+function SearchPanel({ updateSearchTerms }) {
   const [formState, setFormState] = useState({
     value: "",
     filter: 'no filter'
   });
 
   const input = useRef(null);
-
-  const setDataByTerms = async _ => {
-    try {
-      setData(formState.value !== '' ? await searchRepos(formState.value, formState.filter) : []);
-    } catch (e) {
-      setError(e.message);
-    }
-  }
 
   const handleInputChange = event => {
     const target = event.target;
@@ -29,13 +20,13 @@ function SearchPanel({ setData, setError }) {
   }
 
   const handleSubmit = event => {
-    setDataByTerms(formState.value);
+    updateSearchTerms(formState.value, formState.filter);
     event.preventDefault();
     input.current.blur();
   }
 
   useEffect(() => {
-    setDataByTerms(formState.value);
+    updateSearchTerms(formState.value, formState.filter);
   }, [formState])
 
   return (
