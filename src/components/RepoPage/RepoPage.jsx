@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react/cjs/react.development";
 import { searchRepoById } from "../../api";
 import RepoContent from "../RepoContent/RepoContent";
+import { trackPromise } from 'react-promise-tracker';
+import Spinner from '../Spinner/Spinner';
 
 function RepoPage() {
   let params = useParams();
@@ -20,7 +22,10 @@ function RepoPage() {
   }
 
   useEffect(() => {
-    setRepoById();
+    trackPromise(
+      setRepoById()
+      , 'content'
+    );
   }, [currentRepoId]);
 
   return (
@@ -29,7 +34,10 @@ function RepoPage() {
         {
           error ?
             <h3>{error}</h3> :
-            <RepoContent repo={repo} />
+            <>
+              <Spinner area='content' />
+              <RepoContent repo={repo} />
+            </>
         }
       </div>
     </div >

@@ -3,12 +3,14 @@ import RepoCard from '../RepoCard/RepoCard';
 import { useState, useEffect } from 'react/cjs/react.development';
 import { searchRepos } from '../../api'
 import Paginate from '../Paginate/Paginate';
+import { trackPromise } from 'react-promise-tracker';
+import Spinner from '../Spinner/Spinner';
 
 function SearchResults({ searchTerms, repoCount }) {
   const [repos, setRepos] = useState([]);
   const [error, setError] = useState();
   const [page, setPage] = useState(1);
-  const REPO_PER_PAGE = 30;
+  const REPO_PER_PAGE = 5;
 
   const updatePage = (page) => {
     setPage(page);
@@ -24,22 +26,27 @@ function SearchResults({ searchTerms, repoCount }) {
 
   useEffect(() => {
     //console.log(searchTerms); 
-    setReposByTermsAndFilter()
+    trackPromise(
+      setReposByTermsAndFilter(),
+      'repo-list'
+    )
   }, [searchTerms, page]);
 
   return (
     <div className='search-results'>
       <div className="container">
+        <Spinner area="repo-list" />
         {
-          error ? (
-            <h3>{error}</h3>) :
+          error ? <h3>{error}</h3> :
             (
               <ul className='repos'>{
                 repos.map((repo) => {
-                  return <li key={repo.id}>
-                    <hr />
-                    <RepoCard repo={repo} />
-                  </li>
+                  return (
+                    <li key={repo.id}>
+                      <hr />
+                      <RepoCard repo={repo} />
+                    </li>
+                  )
                 })
               }</ul>
             )

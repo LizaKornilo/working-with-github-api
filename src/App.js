@@ -3,6 +3,8 @@ import { getRepoCount } from './api';
 import './App.css';
 import SearchPanel from './components/SearchPanel/SearchPanel';
 import SearchResults from './components/SearchResults/SearchResults';
+import { trackPromise } from 'react-promise-tracker';
+import Spinner from './components/Spinner/Spinner';
 
 function App() {
   const [repoCount, setRepoCount] = useState(0);
@@ -26,13 +28,17 @@ function App() {
   }
 
   useEffect(() => {
-    setCount()
+    trackPromise(
+      setCount()
+      , 'count'
+    );
   }, [searchTerms]);
 
   return (
     <div className="App">
       <SearchPanel updateSearchTerms={updateSearchTerms} />
       <div className='container'>
+        <Spinner area="count" />
         <div className='repos-count'>
           {
             error ? error : <>{repoCount} repository results</>
