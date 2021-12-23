@@ -1,7 +1,11 @@
 export async function getRepoCount(terms, filter) {
   const url = encodeURI(`https://api.github.com/search/repositories?&q=${terms}${filter !== "no filter" ? ("&sort=" + filter) : ""}`);
 
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    headers: {
+      'Authorization': `token ${process.env.REACT_APP_GITHUB_TOKEN}`,
+    }
+  });
   const data = await response.json();
 
   if (response.status === 422) throw new Error('Validation Failed :(');
@@ -15,7 +19,11 @@ export async function getRepoCount(terms, filter) {
 export async function searchRepos(terms, filter, page = 1, itemsPerPage = 30) {
   const url = encodeURI(`https://api.github.com/search/repositories?page=${page}&per_page=${itemsPerPage}&q=${terms}${filter !== "no filter" ? ("&sort=" + filter) : ""}`);
   //console.log(url);
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    headers: {
+      'Authorization': `token ${process.env.REACT_APP_GITHUB_TOKEN}`,
+    }
+  });
   const data = await response.json();
 
   if (response.status === 422) throw new Error('Validation Failed :(');
@@ -37,7 +45,11 @@ export async function searchRepos(terms, filter, page = 1, itemsPerPage = 30) {
 export async function searchRepoById(repoId) {
   const url = encodeURI(`https://api.github.com/repositories/${repoId}`);
 
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    headers: {
+      'Authorization': `token ${process.env.REACT_APP_GITHUB_TOKEN}`,
+    }
+  });
   const data = await response.json();
 
   if (response.status === 403) throw new Error('API rate limit exceeded :(');
