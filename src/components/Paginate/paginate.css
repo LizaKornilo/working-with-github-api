@@ -18,6 +18,10 @@
   border-radius: 6px;
 }
 
+.page-item:hover{
+  background-color: #999;
+}
+
 .active {
   background-color: #0969da;
   color: white;
