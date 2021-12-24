@@ -1,6 +1,6 @@
 import './searchResults.css';
 import RepoCard from '../RepoCard/RepoCard';
-import { useState, useEffect } from 'react/cjs/react.development';
+import { useState, useEffect } from 'react';
 import { searchRepos } from '../../api'
 import Paginate from '../Paginate/Paginate';
 import { trackPromise } from 'react-promise-tracker';

@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react/cjs/react.development";
 import { searchRepoById } from "../../api";
 import RepoContent from "../RepoContent/RepoContent";
 import { trackPromise } from 'react-promise-tracker';

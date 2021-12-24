@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
-import { useEffect } from 'react/cjs/react.development';
 import './paginate.css'
 
 function Paginate({ updatePage, repoCount, repoPerPage }) {
