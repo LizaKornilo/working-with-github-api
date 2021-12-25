@@ -26,7 +26,8 @@ function SearchPanel({ updateSearchTerms }) {
   }
 
   useEffect(() => {
-    updateSearchTerms(formState.value, formState.filter);
+    const timeOutId = setTimeout(() => updateSearchTerms(formState.value, formState.filter), 1000);
+    return () => clearTimeout(timeOutId);
   }, [formState])
 
   return (
